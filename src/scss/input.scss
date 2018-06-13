@@ -1,0 +1,139 @@
+*, html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: helvetica;
+  font-weight: 100;
+}
+
+h1 {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.header {
+  position: relative;
+  img {
+    width: 100%;
+  }
+}
+
+.header-flex {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+  .logo {
+    margin: 20px 0;
+    text-align: center;
+    transition-property: transform;
+    transition-duration: 1s;
+    img {
+      width: 100px;
+    }
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+  ul {
+    margin: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  li {
+    font-size: 1em;
+    list-style: none;
+    a {
+      position: relative;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: black;
+      transition: color ease-in-out .3s;
+      &:hover {
+        color: white;
+      }
+    }
+    a::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background-color: white;
+      position: absolute;
+      top: -0.5em;
+      left: 0;
+      right: 0;
+      transform: scale(0,1);
+      transition: transform ease-in-out .5s,
+                  opacity ease-in-out .5s;
+    }
+    a:hover::before {
+      opacity: 0.6;
+      transform: scale(1,1);
+    }
+    a::after {
+      content: '';
+      display: block;
+      height: 3px;
+      background-color: white;
+      position: absolute;
+      top: 2.9em;
+      left: 0;
+      right: 0;
+      transform: scale(0,1);
+      transition: transform ease-in-out .5s,
+                  opacity ease-in-out .5s;
+    }
+    a:hover::after {
+      opacity: 0.6;
+      transform: scale(1,1);
+    }
+  }
+}
+
+.text-block {
+  margin: 20px;
+  h1 {
+    text-align: center;
+  }
+}
+
+.img-grid {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .thumb {
+    cursor: pointer;
+    position: relative;
+    img {
+      transition-property: filter;
+      transition-duration: 1s;
+      border-radius: 15px;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+    }
+    .text {
+      width: 100%;
+      transition-property: bottom, opacity;
+      transition-duration: 1s;
+      position: absolute;
+      bottom: 0;
+      opacity: 0;
+      text-align: center;
+      color: white;
+    }
+    &:hover .text {
+      bottom: 30%;
+      opacity: 0.7;
+    }
+    &:hover img {
+    filter: brightness(0.3);
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+
+}
