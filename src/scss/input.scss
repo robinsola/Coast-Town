@@ -1,3 +1,16 @@
+@mixin mQ ($arg...){
+  @if length($arg) == 1 {
+    @media screen and (max-width: nth($arg, 1)) {
+      @content;
+    }
+  }
+  @if length($arg) == 2 {
+    @media screen and (min-width: nth($arg, 2)) {
+      @content;
+    }
+  }
+}
+
 *, html, body {
   margin: 0;
   padding: 0;
@@ -14,11 +27,13 @@ h1 {
   position: relative;
   img {
     width: 100%;
+    height: 700px;
+    object-fit: cover;
   }
 }
 
 .header-flex {
-  width: 100%;
+  width: 95%;
   position: absolute;
   top: 0;
   display: flex;
@@ -27,21 +42,29 @@ h1 {
   .logo {
     margin: 20px 0;
     text-align: center;
-    transition-property: transform;
+    transition-property: transform, opacity;
     transition-duration: 1s;
     img {
       width: 100px;
+      height: auto;
     }
     &:hover {
       transform: rotate(360deg);
+      opacity: 0;
     }
   }
   ul {
-    margin: 15px 20px;
+    @include mQ(730px) {
+      display: block;
+    }
     display: flex;
-    justify-content: flex-end;
+    margin-top: 35px;
   }
   li {
+    @include mQ(730px) {
+      text-align: right;
+      padding-bottom: 35px;
+    }
     font-size: 1em;
     list-style: none;
     a {
@@ -102,20 +125,30 @@ h1 {
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   .thumb {
+    margin-right: 10px;
     cursor: pointer;
     position: relative;
     img {
+      @include mQ(800px) {
+        width: 100%;
+      }
+      @include mQ(1094px, 801px) {
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+      }
+      @include mQ(3000px, 1095px) {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+      }
       transition-property: filter;
       transition-duration: 1s;
       border-radius: 15px;
-      width: 250px;
-      height: 250px;
-      object-fit: cover;
     }
     .text {
-      width: 100%;
       transition-property: bottom, opacity;
       transition-duration: 1s;
       position: absolute;
@@ -132,8 +165,4 @@ h1 {
     filter: brightness(0.3);
     }
   }
-}
-
-@media screen and (min-width: 650px) {
-
 }
